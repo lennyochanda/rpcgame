@@ -11,8 +11,13 @@
 			const randomChoice = Math.floor(Math.random() * choice.length)
 			return choice[randomChoice].toUpperCase()
 				}
+		
+		function gamerPlay () {
+			const choice = window.prompt("Are You Ready to Play? Type 'Rock', 'Paper' or 'Scissors'. ")
+			return choice.toUpperCase()
+				}
 
-		function oneGame (playerSelection, computerSelection) {
+		function oneRound (playerSelection, computerSelection) {
 			if (playerSelection === computerSelection) {
 				alert("It's a Draw. Try Again")
 					}
@@ -39,10 +44,16 @@
 						}
 				else {
 					alert(`You Lost! ROCK beats ${playerSelection}`)
-
-
-
-
+					}
+					}
+						}
+		const computerSelection = computerPlay()
+		const playerSelection = 
+		function game () {
+			for (let i = 1; i < 6; i++) {
+				oneRound()
+					}
+				}
 	</script>
 </body>
 </html>
