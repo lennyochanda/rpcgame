@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>RockPaperScissors</title>
+</head>
+<body>
+	<script>
+		function computerPlay () {
+			const choice = ['Rock', 'Paper', 'Scissors']
+			const randomChoice = Math.floor(Math.random() * choice.length)
+			return choice[randomChoice].toUpperCase()
+				}
+
+		function oneGame (playerSelection, computerSelection) {
+			if (playerSelection === computerSelection) {
+				alert("It's a Draw. Try Again")
+					}
+
+			else if (playerSelection === 'ROCK') {
+				if (computerSelection === 'PAPER') {
+					alert(`You Lost! ${computerSelection} beats ${playerSelection}`)
+						}
+				else {
+					alert(`You Won! ${playerSelection} beats SCISSORS.}`)
+					}
+						}
+			else if (playerSelection === 'PAPER') {
+				if (computerSelection ==='ROCK') {
+					alert(`You Won! ${playerSelection} beats ${computerSelection}`)
+						}
+				else {
+					alert(`You Lost! SCISSORS beats ${playerSelection}`)
+					}
+						}
+			else if (playerSelection === 'SCISSORS') {
+				if (computerSelection ==='PAPER') {
+					alert(`You Won! ${playerSelection} beats ${computerSelection}`)
+						}
+				else {
+					alert(`You Lost! ROCK beats ${playerSelection}`)
+
+
+
+
+	</script>
+</body>
+</html>
