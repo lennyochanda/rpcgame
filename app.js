@@ -1,4 +1,28 @@
-		function computerPlay () {
+const rockBtn = document.getElementById('#rock');
+console.log(rockBtn);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function computerPlay () {
+
 			const choice = ['rock', 'paper', 'scissors']
 			const randomChoice = Math.floor(Math.random() * choice.length)
 			return choice[randomChoice]
@@ -70,3 +94,4 @@
 					}
 
 		game()
+
