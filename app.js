@@ -1,97 +1,81 @@
-const rockBtn = document.getElementById('#rock');
-console.log(rockBtn);
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+	oneRound(button.id, computerPlay());
+    })
+});
 
 
 
+function oneRound (playerChoice, computerChoice) {
+    if (playerChoice == computerChoice) {
+	declareWinner('draw');
+    }
+    
+    else if (playerChoice === 'rock' && computerChoice === 'paper' || 
+	playerChoice === 'paper' && computerChoice === 'scissors' ||
+	playerChoice === 'scissors' && computerChoice === 'rock') {
+	    declareWinner('computer');
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    else if (playerChoice !== 'rock' && computerChoice === 'paper' || 
+	playerChoice !== 'paper' && computerChoice === 'scissors' ||
+	playerChoice !== 'scissors' && computerChoice === 'rock') {
+	    declareWinner('person');
+    }
+}
 
 
 
 function computerPlay () {
+    const choiceList = ['rock', 'paper', 'scissors'];
+    const randomNumber = Math.floor(Math.random() * 3);
 
-			const choice = ['rock', 'paper', 'scissors']
-			const randomChoice = Math.floor(Math.random() * choice.length)
-			return choice[randomChoice]
-				}
-		
-		function gamerPlay () {
-			const choice = window.prompt("Are You Ready to Play? Type 'Rock', 'Paper' or 'Scissors'. ")
-			return choice.toLowerCase()
-				}
-
-		let computerCounter = 0
-		let playerCounter = 0
-		let drawCounter = 0
-		function oneRound (playerSelection, computerSelection) {
-			if (playerSelection === computerSelection) {
-				drawCounter++
-				alert("It's a Draw! Try Again.")
-					}
-
-			else if (playerSelection === 'rock') {
-				if (computerSelection === 'paper') {
-					computerCounter++
-					alert(`You Lost! ${computerSelection} beats ${playerSelection}.`)
-						}
-				else {
-					playerCounter++
-					alert(`You Won! ${playerSelection} beats Scissors.`)
-					}
-						}
-			else if (playerSelection === 'paper') {
-				if (computerSelection ==='rock') {
-					playerCounter++
-					alert(`You Won! ${playerSelection} beats ${computerSelection}.`)
-						}
-				else {
-					computerCounter++
-					alert(`You Lost! Scissors beats ${playerSelection}.`)
-					}
-						}
-			else if (playerSelection === 'scissors') {
-				if (computerSelection ==='paper') {
-					playerCounter++
-					alert(`You Won! ${playerSelection} beats ${computerSelection}.`)
-						}
-				else {
-					computerCounter++
-					alert(`You Lost! Rock beats ${playerSelection}.`)
-					}
-					}
-			else if (playerSelection !== 'paper' || 'scissors' || 'rock') {
-				alert('Please enter a valid choice.')
-							}
-						}
-		
-		function game () {
-			for (let i = 1; i < 6; i++) {
-				const computerSelection = computerPlay()
-				const playerSelection = gamerPlay() 		
-				oneRound(playerSelection, computerSelection)
-					}
-			if (computerCounter > playerCounter) {
-				alert(`The computer wins with ${computerCounter} against ${playerCounter} and ${drawCounter} draws.`)
-							}
-			else {
-				alert(`You win with ${playerCounter} against ${computerCounter} and ${drawCounter} draws.`)
+    return choiceList[randomNumber];
+}
 
 
-					}
-					}
+let drawCount = 0;
+let personCount = 0;
+let computerCount = 0;
 
-		game()
 
+function declareWinner (winner) {
+        //calculate score
+    if (winner === 'draw') {
+	drawCount++;
+	displayResult('draw', drawCount);
+
+    }
+
+    else if (winner === 'person') {
+	personCount++;
+	displayResult('person', personCount);
+    }
+
+    else {
+	computerCount++;
+	displayResult('computer', computerCount);
+    }
+
+}
+
+
+
+//show final results
+function displayResult(theWinner, gamesWon) {
+    const content = document.getElementsByClassName('content')[0];
+
+    if (theWinner === 'draw') {
+        content.textContent = `It was a tie!`;
+    }
+
+    else if (theWinner === 'person') {
+	content.textContent = `You Won ${personCount} : ${computerCount} .`;
+    }
+
+    else if (theWinner === 'computer') {
+	content.textContent = `You Lost ${personCount} : ${computerCount}`;
+    }
+}
